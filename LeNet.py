@@ -14,7 +14,7 @@ import torch.nn as nn
 
 
 class LeNet(nn.Module):
-	def __init__(self):
+	def __init__(self, num_classes):
 		super(LeNet, self).__init__()
 		self.relu = nn.ReLU()
 		self.pool = nn.AvgPool2d(kernel_size = (2,2), stride = (2,2))
@@ -40,7 +40,7 @@ class LeNet(nn.Module):
 								padding      = (0,0)
 								)
 		self.linear1     = nn.Linear(120, 84)
-		self.linear2     = nn.Linear(84, 10)
+		self.linear2     = nn.Linear(84, num_classes)
 
 
 	def forward(self, x):
@@ -66,7 +66,7 @@ class LeNet(nn.Module):
 def test_net():
 	device = "cuda" if torch.cuda.is_available() else "cpu"
 	x = torch.randn(64, 1, 32, 32).to(device)
-	model = LeNet().to(device)
+	model = LeNet(num_classes=10).to(device)
 	return model(x)
 
 
