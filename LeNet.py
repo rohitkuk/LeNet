@@ -73,3 +73,5 @@ def test_net():
 if __name__ == '__main__':
 	out = test_net()
 	print(out.shape)
+	print("code updated")
+
